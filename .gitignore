@@ -1,0 +1,13 @@
+# OS and Editor
+._*
+.cache
+.DS_Store
+**/.DS_Store
+.idea
+.vscode
+Thumbs.db
+
+# Folders
+node_modules
+.git
+dist

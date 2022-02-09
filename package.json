@@ -1,0 +1,42 @@
+{
+  "name": "rob-a-corovan",
+  "version": "0.0.0",
+  "description": "Mini game for your app, so you finally can \"grabit' korovany\" ©",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --mode=development --open --progress --profile --color",
+    "build": "rimraf dist && webpack --profile --color --mode=production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artkondakov/rob-a-corovan.git"
+  },
+  "keywords": [
+    "robbery",
+    "cows",
+    "game"
+  ],
+  "author": "Artemiy Kondakov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artkondakov/rob-a-corovan/issues"
+  },
+  "homepage": "https://github.com/artkondakov/rob-a-corovan#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/plugin-transform-runtime": "^7.16.10",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/runtime": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "html-webpack-plugin": "^5.5.0",
+    "rimraf": "^3.0.2",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}
