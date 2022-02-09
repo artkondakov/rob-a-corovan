@@ -9,5 +9,10 @@
 </head>
 <body>
   <div id="root"></div>
+  <% if(mode !== 'production') { %>
+    <script>
+      setTimeout(() => window.robACorovan.start(), 1000);
+    </script>
+  <% } %>
 </body>
 </html>

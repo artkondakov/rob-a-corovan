@@ -7,10 +7,14 @@ const game = {
   } = {}) {
     console.log('Game started');
     
-    function nextRound(roundCount = 0) {
+    function nextRound(roundCount = 1) {
       const round = new Round(roundCount, cows);
       round.on('roundEnded', () => {
-        roundCount < rounds - 1 && nextRound(roundCount + 1);
+        if (roundCount < rounds - 1) {
+          nextRound(roundCount + 1);
+        } else {
+          console.info('All corovans were robbed, try to play as palace guard next time');
+        }
       });
     }
 
