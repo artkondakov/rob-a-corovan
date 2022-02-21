@@ -10,24 +10,24 @@ class Cow {
 
   getElement() {
     const isEven = this.index % 2 === 0;
-    const elSizeValue = `${this.elSize}vw`;
     const baseEmojiStyles = `
       backface-visibility: hidden;
       position: absolute;
-      width: ${elSizeValue};
-      height: ${elSizeValue};
+      width: ${this.elSize}px;
+      height: ${this.elSize}px;
     `
 
-
     const el = document.createElement('div');
-    el.style.transition = `${ ANIMATION_TIME }ms`;
-    el.style.transformStyle = 'preserve-3d';
-    el.style.position = 'relative';
-    el.style.width = '100%';
-    el.style.height = '100%';
-    el.style.top = `${ isEven ? EL_SIZE / -4 : EL_SIZE / 4}vw`;
-    el.style.fontSize = elSizeValue;
-    el.style.lineHeight = elSizeValue;
+    el.style.cssText = `
+      transition: ${ ANIMATION_TIME }ms;
+      transform-style: preserve-3d;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: ${ isEven ? this.elSize / -4 : this.elSize / 4}px;
+      font-size: ${this.elSize}px;
+      line-height: ${this.elSize}px;
+    `;
     el.setAttribute('class', `rac-el`);
 
     const cowEl = document.createElement('span');
@@ -51,8 +51,8 @@ class Cow {
     const wrapper = document.createElement('div'); 
     wrapper.setAttribute('class', `rac-el-${isEven ? 'even' : 'odd'}`);
     wrapper.style.cssText = `
-      width: ${elSizeValue};
-      height: ${elSizeValue};
+      width: ${this.elSize}px;
+      height: ${this.elSize}px;
       perspective: 500px;
       display: inline-block;
     `;
