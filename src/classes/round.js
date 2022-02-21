@@ -1,4 +1,4 @@
-import Cow, { EL_SIZE, ROTATE_ANIMATION_TIME } from "./cow";
+import Cow, { ROTATE_ANIMATION_TIME } from './cow';
 
 function randomFromTo(from, to) {
   return Math.floor(Math.random() * (to - from + 1) + from);
@@ -8,26 +8,30 @@ class Round {
     this.tick = this.tick.bind(this);
     this.onClick = this.onClick.bind(this);
     this.$events = [];
-    this.$rootID = "corovan";
+    this.$rootID = 'corovan';
     // 0 - horizontal, 1 - vertical
     this.direction = randomFromTo(0, 1);
 
-    console.log(`Starting round${roundNumber ? ` #${roundNumber}` : ""}!`);
+    console.log(`Starting round${roundNumber ? ` #${roundNumber}` : ''}!`);
+    const windowWidth = Math.round(window.innerWidth / window.devicePixelRatio);
+    const windowHeight = Math.round(window.innerHeight / window.devicePixelRatio);
+    const elSize =
+      windowWidth <= 720 && windowWidth < windowHeight ? windowWidth * 0.1 : windowWidth * 0.05;
 
-    const elSize = Math.round(window.devicePixelRatio);
-    this.$container = document.createElement("div");
-    this.$container.setAttribute("id", this.$rootID);
+    this.$container = document.createElement('div');
+    this.$container.setAttribute('id', this.$rootID);
     this.$container.style.cssText = `
-      width: ${this.direction ? cows * elSize : elSize}vw;
-      height: ${this.direction ? elSize: cows * elSize}vw;
+      width: ${this.direction ? cows * elSize : elSize}px;
+      height: ${this.direction ? elSize : cows * elSize}px;
       cursor: grab;
+      cursor: pointer;
       position: absolute;
       z-index: ${zIndex};
       left: ${randomFromTo(1, 99 - cows)}vw;
       top: ${randomFromTo(1, 99)}vh;
     `;
-    this.$container.addEventListener("click", this.onClick);
-    document.querySelector("body").appendChild(this.$container);
+    this.$container.addEventListener('click', this.onClick);
+    document.querySelector('body').appendChild(this.$container);
     this.cows = new Array(cows).fill(null).map((item, i) => {
       const cow = new Cow({
         index: i + 1,
@@ -35,7 +39,6 @@ class Round {
         parentNodeId: this.$rootID,
         direction: this.direction,
       });
-      // this.$container.appendChild(cow.getElement());
       return cow;
     });
 
@@ -63,13 +66,13 @@ class Round {
     e.preventDefault();
     clearInterval(this.$interval);
     document.querySelectorAll(`#${this.$rootID} .rac-el`).forEach((item) => {
-      item.style.transform = "rotateY(180deg)";
+      item.style.transform = 'rotateY(180deg)';
     });
     // console.log('Robbed!');
-    this.$container.removeEventListener("click", this.onClick);
+    this.$container.removeEventListener('click', this.onClick);
     setTimeout(() => {
       this.$container.remove();
-      this.emit("roundEnded");
+      this.emit('roundEnded');
     }, ROTATE_ANIMATION_TIME * 2);
   }
 }
