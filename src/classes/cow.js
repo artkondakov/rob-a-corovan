@@ -1,7 +1,4 @@
-export const EL_SIZE = 2;
-export const MOVE_ANIMATION_TIME = 50;
-export const ROTATE_ANIMATION_TIME = 500;
-export const SCALE = 8;
+import { EL_SIZE, ROTATE_ANIMATION_TIME, SCALE } from '../constants';
 
 class Cow {
   constructor({ index, elSize, parentNodeId, direction }) {
@@ -10,7 +7,9 @@ class Cow {
     this.elSize = elSize;
     this.parentNodeId = parentNodeId;
     this.direction = direction;
-    this.movementCssProp = this.direction ? 'top' : 'left';
+    this.movementCssProp = this.direction
+      ? 'left' // vertical
+      : 'top'; // horizontal
     this.getElement = this.getElement.bind(this);
     this.render = this.render.bind(this);
     this.onTick = this.onTick.bind(this);
